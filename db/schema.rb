@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_172057) do
+ActiveRecord::Schema.define(version: 2019_07_24_174158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(version: 2019_07_24_172057) do
     t.bigint "animal_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "person_id"
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
+    t.index ["person_id"], name: "index_animals_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -39,4 +41,5 @@ ActiveRecord::Schema.define(version: 2019_07_24_172057) do
   end
 
   add_foreign_key "animals", "animal_types"
+  add_foreign_key "animals", "people"
 end
