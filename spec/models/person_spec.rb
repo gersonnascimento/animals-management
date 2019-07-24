@@ -16,4 +16,12 @@ RSpec.describe Person, type: :model do
       expect(person.age).to eq(17)
     end
   end
+
+  context 'When calculating age of a person with 18 years and a month' do
+    it 'should return 18 years old' do
+      person = build(:person, birth_date: 18.years.ago.prev_month)
+
+      expect(person.age).to eq(18)
+    end
+  end
 end
