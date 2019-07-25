@@ -4,6 +4,7 @@ class Animal < ApplicationRecord
 
   validates_with OwnerAgeValidator
   validates_with OwnerNameValidator
+  validates_with OwnerCostValidator
 
   def type
     animal_type.title

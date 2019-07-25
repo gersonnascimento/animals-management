@@ -59,4 +59,15 @@ RSpec.describe Animal, type: :model do
       expect(animal.valid?).to eq(true)
     end
   end
+
+  context 'When trying to save an animal, and owner s monthly cost is bigger than permited' do
+    it 'builded animal must not be valid' do
+      person = create(:person)
+      create_list(:animal, 6, person: person, monthly_cost: 199)
+      new_animal = build(:animal, person: person)
+      person.reload
+
+      expect(new_animal.valid?).to eq(false)
+    end
+  end
 end

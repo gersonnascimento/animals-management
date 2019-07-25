@@ -30,6 +30,8 @@ RSpec.describe Person, type: :model do
       person = create(:person)
       create_list(:animal, 10 , person: person, monthly_cost: 8)
 
+      person.reload
+
       expect(person.monthly_cost).to eq(80)
     end
 
@@ -37,6 +39,7 @@ RSpec.describe Person, type: :model do
       person = create(:person)
       create_list(:animal, 10 , person: person, monthly_cost: 8)
       create_list(:animal, 10 , monthly_cost: 80)
+      person.reload
 
       expect(person.monthly_cost).to eq(80)
     end
