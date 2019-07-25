@@ -29,4 +29,34 @@ RSpec.describe Animal, type: :model do
       expect(animal.valid?).to eq(true)
     end
   end
+
+  context 'When trying to save an animal, but owner s name must not starts with certain letter' do
+    it 'builded animal must not be valid' do
+      type = create(:animal_type, verify_first_letter: true)
+      person = create(:person, birth_date: 17.years.ago, name: 'Alex')
+      animal = build(:animal, animal_type: type, person: person)
+
+      expect(animal.valid?).to eq(false)
+    end
+  end
+
+  context 'When trying to save an animal, and owner s name not starts with certain letter' do
+    it 'builded animal must be valid' do
+      type = create(:animal_type, verify_first_letter: true)
+      person = create(:person, birth_date: 17.years.ago, name: 'Eduardo')
+      animal = build(:animal, animal_type: type, person: person)
+
+      expect(animal.valid?).to eq(true)
+    end
+  end
+
+  context 'When trying to save an animal, and owner s name starts with invalid letter, animal is permited' do
+    it 'builded animal must be valid' do
+      type = create(:animal_type)
+      person = create(:person, birth_date: 17.years.ago, name: 'Alex')
+      animal = build(:animal, animal_type: type, person: person)
+
+      expect(animal.valid?).to eq(true)
+    end
+  end
 end
