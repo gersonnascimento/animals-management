@@ -8,14 +8,15 @@ people = [
   Person.create(name: 'Elvis Presley', document: '555555555', birth_date: '17/08/2008')
 ]
 
-
 types = [
   AnimalType.create(title: 'Cavalo'),
   AnimalType.create(title: 'Cachorro'),
   AnimalType.create(title: 'Papagaio'),
   AnimalType.create(title: 'Lhama'),
   AnimalType.create(title: 'Iguana'),
-  AnimalType.create(title: 'Ornitorrinco')
+  AnimalType.create(title: 'Ornitorrinco'),
+  AnimalType.create(title: 'Gato', verify_first_letter: true),
+  AnimalType.create(title: 'Andorinha', need_verify_age: true)
 ]
 
 Animal.create(name: 'Pé de Pano', monthly_cost: 199.99, animal_type: types[0], person: people[0])
